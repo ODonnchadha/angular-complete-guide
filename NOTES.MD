@@ -4,7 +4,7 @@
         a. Also, a Header component.
         b. Our Shopping List will contain a List component and an Edit component.
         c. Our Recipe Book will contain a List, Item, and Detail component.
-        d. Model: Ingredient, Receipe.
+        d. Model(s): Ingredient, Receipe.
     ```javascript
         ng new angular-complete-guide
         npm install --save bootstrap@3
@@ -35,3 +35,10 @@
         ng g c shopping-list/shopping-edit
     ```
     6. Standard, classic-style Bootstrap header. No surprises.
+    7. Basic Recipe class. Three public properties. Naming convention: recipe.model.ts.
+        1. With binding, both will work: Attribute string interpolation versus bind to source 'src' itself with property binding.
+        ```javascript
+        <img 
+            src="{{r.imagePath}}"
+            [src]="r.imagePath"
+        ```
