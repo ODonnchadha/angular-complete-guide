@@ -8,10 +8,10 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe : Recipe;
-  @Output() recipeSelected = new EventEmitter<void>();
+  @Output() selectedRecipeEvent = new EventEmitter<void>();
   
   onSelectedRecipe() {
-    this.recipeSelected.emit();
+    this.selectedRecipeEvent.emit();
   }
 
   constructor() { }

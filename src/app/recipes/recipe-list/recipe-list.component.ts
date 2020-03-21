@@ -18,14 +18,13 @@ export class RecipeListComponent implements OnInit {
       'https://image.shutterstock.com/z/stock-vector-fa-letters-four-colors-in-abstract-background-logo-design-identity-in-circle-alphabet-letter-417449098.jpg'
     )
   ];
+
+  @Output() selectedRecipeToDisplayEvent = new EventEmitter<Recipe>();
+  onRecipeSelected(recipe : Recipe) {
+    this.selectedRecipeToDisplayEvent.emit(recipe);
+  }
+
   constructor() { }
 
-  @Output() selectedRecipeToDisplay = new EventEmitter<Recipe>();
-  onRecipeSelected(recipe : Recipe) {
-    this.selectedRecipeToDisplay.emit(recipe);
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }
