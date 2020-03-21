@@ -42,7 +42,7 @@
             [src]="r.imagePath"
     ```
 
-- Components & Databinding
+- Components & Databinding:
     1. Concentrating on component communication. Initial solotion is *creative* and *not bad.*
     2. NOTE: Ensure that EventEmitter is obtained from '@angular/core'.
     3. NOTE: Custom events do not propigate upward.
@@ -52,7 +52,7 @@
         - selectedRecipeEvent
         - addIngredientEvent
 
-- Directives
+- Directives:
     1. NOTE: *ngIf and *ngFor are directives. Now we'll use directives with our drop downs.
     2. So we did not import Bootstrap.js so that Angular is the only thing that interacts with the DOM.
     3. Define how the directive can be added within the decorator. Use an attribute selector. e.g.: []
@@ -66,3 +66,39 @@
     ```javascript
         <div class="btn-group" appDropdown>
     ```
+
+- Services and Dependency Injection:
+    1. Hey. Let's add some services. We will centralize tasks and manage data in the same *place.*
+    2. We will add the following:
+    - ShopingListService: Manage shopping list, accessable via recipe area.
+    - RecipeService: Manageing recipes.
+    3. Add service reference to the parent. Accessable to all children.
+    ```javascript
+        @Component({
+            selector: 'app-recipes',
+            templateUrl: './recipes.component.html',
+            styleUrls: ['./recipes.component.css'],
+            providers: [RecipeService]
+        })
+    ```
+    4. One/two punch of constructor injection and getting the values.
+    ```javascript
+        constructor(private recipeService: RecipeService) { }
+        ngOnInit(): void { 
+        this.recipes = this.recipeService.getRecipes();
+        }
+    ```
+    5. Now we need to lose the cross-component event emitter(s).
+        1. Lots of constructor injection. 
+        2. All components, paret and children, receive the same instance of the service.
+        3. In the parent component, subscripe to the event:
+    ```javascript
+        ngOnInit(): void { 
+            this.recipeService.recipeSelectedEvent.subscribe((recipe: Recipe) => {
+            this.recipe = recipe;
+            });
+        }
+    ```
+        - service => recipeSelectedEvent
+        - recipe-item => onRecipeSelected
+        - parent => .subscribe()
