@@ -51,3 +51,18 @@
         - selectedRecipeToDisplayEvent
         - selectedRecipeEvent
         - addIngredientEvent
+
+- Directives
+    1. NOTE: *ngIf and *ngFor are directives. Now we'll use directives with our drop downs.
+    2. So we did not import Bootstrap.js so that Angular is the only thing that interacts with the DOM.
+    3. Define how the directive can be added within the decorator. Use an attribute selector. e.g.: []
+    ```javascript
+    @Directive({
+        selector: '[appDropdown]'
+        })
+    ```
+    4. In order to leverage this directive, add it to app.component.
+    5. Now apply:
+    ```javascript
+        <div class="btn-group" appDropdown>
+    ```
