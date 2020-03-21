@@ -44,4 +44,5 @@
 
 - Components & Databinding
     1. Concentrating on component communication. Initial solotion is *creative* and *not bad.*
-    2. Ensure that EventEmitter is obtained from '@angular/core'.
+    2. NOTE: Ensure that EventEmitter is obtained from '@angular/core'.
+    3. NOTE: Custom events do not propigate upward.
