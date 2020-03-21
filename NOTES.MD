@@ -102,3 +102,9 @@
         - service => recipeSelectedEvent
         - recipe-item => onRecipeSelected
         - parent => .subscribe()
+    6. If injecting a service into another service, sigh, we need the following decorator.
+    ```javascript
+        @Injectable()
+        export class RecipeService {
+    ```
+    7. And then we constructor-inject the service.
