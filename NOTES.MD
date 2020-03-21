@@ -3,7 +3,7 @@
         - Also, a Header component.
         - Our Shopping List will contain a List component and an Edit component.
         - Our Recipe Book will contain a List, Item, and Detail component.
-        - Model(s): Ingredient, Receipe.
+        - Models: Ingredient, Receipe.
     ```javascript
         ng new angular-complete-guide
         npm install --save bootstrap@3
@@ -55,7 +55,7 @@
 - Directives
     1. NOTE: *ngIf and *ngFor are directives. Now we'll use directives with our drop downs.
     2. So we did not import Bootstrap.js so that Angular is the only thing that interacts with the DOM.
-    3. Define how the directive can be added within the decorator. Use an attribute selector. e.g.: []
+    3. Define how the directive can be added within the decorator. Use an attribute selector. e.g.:
     ```javascript
     @Directive({
         selector: '[appDropdown]'
