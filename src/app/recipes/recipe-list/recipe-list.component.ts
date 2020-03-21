@@ -10,11 +10,11 @@ export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [ 
     new Recipe(
       'Protein', 
-      'Decent taste', 
+      'Decent tasting stuff', 
       'https://www.stickpng.com/assets/images/5a01c454cad612fd1571181b.png'
     ), new Recipe(
       'Fatty Acids', 
-      'Great taste', 
+      'Great tasting stuff', 
       'https://image.shutterstock.com/z/stock-vector-fa-letters-four-colors-in-abstract-background-logo-design-identity-in-circle-alphabet-letter-417449098.jpg'
     )
   ];
