@@ -44,3 +44,4 @@
 
 - Components & Databinding
     1. Concentrating on component communication. Initial solotion is *creative* and *not bad.*
+    2. Ensure that EventEmitter is obtained from '@angular/core'.
