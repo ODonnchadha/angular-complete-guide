@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-complete-guide';
+  title = 'angular-complete-guide::TDS Polymer';
+  
+  currentSelector = 'recipes';
+  onNavigate(selector : string) {
+    this.currentSelector = selector;
+  }
 }
