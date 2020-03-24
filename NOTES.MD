@@ -108,3 +108,15 @@
         export class RecipeService {
     ```
     7. And then we constructor-inject the service.
+
+- Routing:
+    1. NgModule will transform a JavaScript class into a module.
+    ```javascript
+    @NgModule({
+        imports: [RouterModule.forRoot(routes)],
+        exports: [RouterModule]
+        })
+    ```
+    2. Register routes.
+    3. Remove href="#" in order to ensure that we do not reload.
+    4. Child routes:
