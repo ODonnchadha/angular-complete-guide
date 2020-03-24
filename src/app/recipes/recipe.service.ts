@@ -25,11 +25,12 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) {
   }
-
   getRecipes() {
     return this.recipes.slice();
   }
-
+  getRecipeById(id: number) {
+    return this.recipes[id];
+  }
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
   }

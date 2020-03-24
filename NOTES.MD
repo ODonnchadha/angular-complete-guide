@@ -119,4 +119,23 @@
     ```
     2. Register routes.
     3. Remove href="#" in order to ensure that we do not reload.
-    4. Child routes:
+    4. Child routes with parameters:
+    ```javascript
+    { path: ':id', component: RecipeDetailComponent }
+    ```
+        a. We await for this to be set outside of the component:
+        ```javascript
+            @Input() recipe: Recipe;
+        ```
+        b. Constructor-inject the router:
+        ```javascript
+          constructor(private route: ActivatedRoute)
+        ```
+        c. This will only work the first time that we load the component:
+        d. And we will not be able to react to changes in the recipe.
+        ```javascript
+          ngOnInit(): void {
+            const id = this.route.snapshot.params['id'];
+          }
+        ```
+        e. So we will subscribe. Also, this is not a deep copy: this.recipes.slice()[id];
