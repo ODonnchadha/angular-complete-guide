@@ -139,3 +139,6 @@
           }
         ```
         e. So we will subscribe. Also, this is not a deep copy: this.recipes.slice()[id];
+
+- Observables
+    1. 
