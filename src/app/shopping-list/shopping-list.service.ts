@@ -3,15 +3,12 @@ import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
     ingredientsChangedEvent : Subject<Ingredient[]> = new Subject<Ingredient[]>();
+    editingIngredientsEvent : Subject<number> = new Subject<number>();
 
     private ingredients: Ingredient[] = [
         new Ingredient('Guinness', 1000),
         new Ingredient('Jameson', 40)
       ];
-
-    getIngredients() : Ingredient[] {
-        return this.ingredients.slice();
-    }
 
     addIngredient(ingredient : Ingredient) {
         this.ingredients.push(ingredient);
@@ -20,6 +17,24 @@ export class ShoppingListService {
 
     addIngredients(ingredients : Ingredient[]) {
         this.ingredients.push(...ingredients);
+        this.ingredientsChangedEvent.next(this.ingredients.slice());
+    }
+
+    getIngredientById(id: number) : Ingredient {
+        return this.ingredients.slice()[id];
+    }
+
+    getIngredients() : Ingredient[] {
+        return this.ingredients.slice();
+    }
+
+    deleteIngredient(id: number) {
+        this.ingredients.splice(id, 1);
+        this.ingredientsChangedEvent.next(this.ingredients.slice());
+    }
+
+    updateIngredient(id: number, ingredient: Ingredient) {
+        this.ingredients[id] = ingredient;
         this.ingredientsChangedEvent.next(this.ingredients.slice());
     }
 }

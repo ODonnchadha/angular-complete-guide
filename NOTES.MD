@@ -28,7 +28,7 @@
         ng g c recipes/recipe-detail
         ng g c recipes/recipe-list/recipe-item
     ```
-        c. And more components.
+        - And more components.
     ```javascript
         ng g c shopping-list
         ng g c shopping-list/shopping-edit
@@ -70,8 +70,8 @@
 - Services and Dependency Injection:
     1. Hey. Let's add some services. We will centralize tasks and manage data in the same place.
     2. We will add the following:
-    - ShopingListService: Manage shopping list, accessable via recipe area.
-    - RecipeService: Manageing recipes.
+        - ShopingListService: Manage shopping list, accessable via recipe area.
+        - RecipeService: Manageing recipes.
     3. Add service reference to the parent. Accessable to all children.
     ```javascript
         @Component({
@@ -89,9 +89,9 @@
         }
     ```
     5. Now we need to lose the cross-component event emitter(s).
-        1. Lots of constructor injection. 
-        2. All components, paret and children, receive the same instance of the service.
-        3. In the parent component, subscripe to the event:
+        - Lots of constructor injection. 
+        - All components, paret and children, receive the same instance of the service.
+        - In the parent component, subscripe to the event:
     ```javascript
         ngOnInit(): void { 
             this.recipeService.recipeSelectedEvent.subscribe((recipe: Recipe) => {
@@ -143,3 +143,7 @@
 - Observables
 
 - Forms
+    1. Template-driven approach:
+    2. Reactive:
+
+- HTTP:
