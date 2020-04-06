@@ -140,10 +140,18 @@
         ```
         e. So we will subscribe. Also, this is not a deep copy: this.recipes.slice()[id];
 
-- Observables
+- Observables:
 
-- Forms
+- Forms:
     1. Template-driven approach:
     2. Reactive:
 
-- HTTP:
+- HTTP: Save and fetch
+    1. Backend, Firebase, setup.
+        - https://console.firebase.google.com/project/angular-complete-guide-d1a18/overview
+    2. Database URL:
+        - https://angular-complete-guide-d1a18.firebaseio.com/
+    3. HTTP is a service, so we do need to inject the "service" into our own 'wrapper' service.
+    ```javascript
+        @Injectable()
+    ```

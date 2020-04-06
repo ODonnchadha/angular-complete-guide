@@ -1,57 +1,46 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Ingredient } from '../shared/ingredient.model';
+
 import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
+  private recipes: Recipe[] = [];
+  recipesChanged = new Subject<Recipe[]>();
 
-  recipesChangedEvent : Subject<Recipe[]> = new Subject<Recipe[]>();
+  constructor(private slService: ShoppingListService) { }
 
-  private recipes: Recipe[] = [ 
-    new Recipe(
-      'Protein', 
-      'Decent tasting stuff. Highly underrated.', 
-      'https://www.stickpng.com/assets/images/5a01c454cad612fd1571181b.png', [
-        new Ingredient('Guinness', 100),
-        new Ingredient('Jameson', 12),           
-      ]
-    ), new Recipe(
-      'Fatty Acids', 
-      'Great tasting. Wonderous. And probably quite amazing.', 
-      'https://image.shutterstock.com/z/stock-vector-fa-letters-four-colors-in-abstract-background-logo-design-identity-in-circle-alphabet-letter-417449098.jpg',[
-      ]
-    )
-  ];
-
-  constructor(private shoppingListService: ShoppingListService) {
-  }
-
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
-
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChangedEvent.next(this.recipes.slice());
-  }
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
-    this.recipesChangedEvent.next(this.recipes.slice());
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
   }
 
   getRecipes() {
     return this.recipes.slice();
-    this.recipesChangedEvent.next(this.recipes.slice());
   }
 
-  getRecipeById(id: number) {
-    return this.recipes[id];
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 
-  updateRecipe(id: number, recipe: Recipe) {
-    this.recipes[id] = recipe;
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
   }
 }

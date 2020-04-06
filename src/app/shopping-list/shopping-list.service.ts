@@ -1,40 +1,42 @@
-import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
+import { Subject } from 'rxjs';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class ShoppingListService {
-    ingredientsChangedEvent : Subject<Ingredient[]> = new Subject<Ingredient[]>();
-    editingIngredientsEvent : Subject<number> = new Subject<number>();
+  ingredientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
+  private ingredients: Ingredient[] = [
+  ];
 
-    private ingredients: Ingredient[] = [
-        new Ingredient('Guinness', 1000),
-        new Ingredient('Jameson', 40)
-      ];
+  getIngredients() {
+    return this.ingredients.slice();
+  }
 
-    addIngredient(ingredient : Ingredient) {
-        this.ingredients.push(ingredient);
-        this.ingredientsChangedEvent.next(this.ingredients.slice());
-    }
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
 
-    addIngredients(ingredients : Ingredient[]) {
-        this.ingredients.push(...ingredients);
-        this.ingredientsChangedEvent.next(this.ingredients.slice());
-    }
+  addIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
-    getIngredientById(id: number) : Ingredient {
-        return this.ingredients.slice()[id];
-    }
+  addIngredients(ingredients: Ingredient[]) {
+    // for (let ingredient of ingredients) {
+    //   this.addIngredient(ingredient);
+    // }
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
-    getIngredients() : Ingredient[] {
-        return this.ingredients.slice();
-    }
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
-    deleteIngredient(id: number) {
-        this.ingredients.splice(id, 1);
-        this.ingredientsChangedEvent.next(this.ingredients.slice());
-    }
-
-    updateIngredient(id: number, ingredient: Ingredient) {
-        this.ingredients[id] = ingredient;
-        this.ingredientsChangedEvent.next(this.ingredients.slice());
-    }
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 }
